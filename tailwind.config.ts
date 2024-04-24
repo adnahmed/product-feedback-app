@@ -22,11 +22,6 @@ const config: Config = {
         "blue-dark-2": "#3a4374",
         red: "#d73737",
       },
-      backgroundImage: {
-        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic":
-          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
-      },
       fontFamily: {
         sans: ["var(--font-jost)"],
       },
