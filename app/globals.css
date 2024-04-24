@@ -28,3 +28,19 @@ body {
     text-wrap: balance;
   }
 }
+
+h1 {
+  @apply text-2xl leading-[35px] font-bold -tracking-[.021em];
+}
+
+h2 {
+  @apply text-xl leading-[29px] font-bold -tracking-[.016em];
+}
+
+h3 {
+  @apply text-lg leading-[26px] font-bold -tracking-[.016em];
+}
+
+h4 {
+  @apply text-sm leading-5 font-bold -tracking-[.013em];
+}
