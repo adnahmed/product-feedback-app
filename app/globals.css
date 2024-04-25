@@ -33,3 +33,7 @@ h3 {
 h4 {
   @apply text-sm leading-5 font-bold -tracking-[.013em];
 }
+
+body {
+  @apply bg-gray-light
+}
