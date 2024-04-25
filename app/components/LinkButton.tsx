@@ -1,31 +1,42 @@
 import { tw } from "../lib/tailwindest";
 import { UpArrow } from "./UpArrow";
 
-const linkButton = tw.toggle({
-  truthy: {
-    fontWeight: "font-bold",
-    flexDirection: "flex-col",
-    backgroundColor: "bg-blue-lightest",
-    stroke: "stroke-blue",
-    ":hover": {
-      backgroundColor: "hover:bg-blue-lighter",
+const linkButton = tw.variants({
+  variants: {
+    type: {
+      icon: {
+        fontWeight: "font-bold",
+        flexDirection: "flex-col",
+        backgroundColor: "bg-blue-lightest",
+        stroke: "stroke-blue",
+        ":hover": {
+          backgroundColor: "hover:bg-blue-lighter",
+        },
+        ":active": {
+          backgroundColor: "active:bg-blue",
+          color: "active:text-white",
+          stroke: "active:stroke-gray",
+        },
+      },
+      "no-icon": {
+        fontWeight: "font-semibold",
+        color: "text-blue",
+        backgroundColor: "bg-blue-lightest",
+        ":hover": {
+          backgroundColor: "hover:bg-blue-lighter",
+        },
+        ":active": {
+          backgroundColor: "active:bg-blue",
+          color: "active:text-white",
+        },
+      },
     },
-    ":active": {
-      backgroundColor: "active:bg-blue",
-      color: "active:text-white",
-      stroke: "active:stroke-gray",
-    },
-  },
-  falsy: {
-    fontWeight: "font-semibold",
-    color: "text-blue",
-    backgroundColor: "bg-blue-lightest",
-    ":hover": {
-      backgroundColor: "hover:bg-blue-lighter",
-    },
-    ":active": {
-      backgroundColor: "active:bg-blue",
-      color: "active:text-white",
+    canActivate: {
+      true: {
+        backgroundColor: "bg-blue",
+        color: "text-white",
+      },
+      false: {},
     },
   },
   base: {
@@ -45,16 +56,21 @@ const linkButton = tw.toggle({
 
 export function LinkButton({
   onClick,
+  activated = false,
   children,
   icon = false,
 }: {
   onClick?: (value: string) => void;
+  activated?: boolean;
   icon?: boolean;
   children: string;
 }) {
   return (
     <button
-      className={linkButton.class(!!icon)}
+      className={linkButton.class({
+        type: icon ? "icon" : "no-icon",
+        canActivate: activated,
+      })}
       onClick={(e) => {
         e.preventDefault();
         if (onClick) onClick(children);
