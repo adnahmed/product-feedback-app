@@ -1,5 +1,6 @@
 "use client";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { SortOrderContexts } from "../contexts/SortProvider";
 import { tw } from "../lib/tailwindest";
 
 export const MOST_UPVOTES = "most_upvotes";
@@ -43,6 +44,7 @@ const dropdown = tw.toggle({
   },
   falsy: {
     opacity: "opacity-0",
+    height: "h-0",
     position: "relative",
     zIndex: "-z-50",
   },
@@ -102,10 +104,12 @@ export function SortBy({
   defaultOption?: option;
 }) {
   const [selected, setSelected] = useState<option>(defaultOption);
+  const { setSortOrder } = useContext(SortOrderContexts);
   const [showDropdown, setShowDropdown] = useState<boolean>(false);
   const handleClickItem = (selected: option) => {
     setShowDropdown(false);
     setSelected(selected);
+    if (setSortOrder) setSortOrder({ order: selected });
     if (onChange) onChange(selected);
   };
   return (
