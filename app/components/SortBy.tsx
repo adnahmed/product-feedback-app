@@ -1,6 +1,7 @@
 "use client";
 import { useContext, useState } from "react";
 import { SortOrderContexts } from "../contexts/SortProvider";
+import { capitalize } from "../lib/helpers";
 import { tw } from "../lib/tailwindest";
 
 export const MOST_UPVOTES = "most_upvotes";
@@ -8,6 +9,8 @@ export const LEAST_UPVOTES = "least_upvotes";
 export const MOST_COMMENTS = "most_comments";
 export const LEAST_COMMENTS = "least_comments";
 const select = tw.style({
+  position: "relative",
+  zIndex: "z-50",
   color: "text-gray",
   fontSize: "text-sm",
   outlineStyle: "outline-none",
@@ -41,14 +44,17 @@ const arrow = tw.toggle({
 const dropdown = tw.toggle({
   truthy: {
     opacity: "opacity-100",
+    position: "absolute",
+    top: "top-20",
+    zIndex: "z-[500]",
   },
   falsy: {
     opacity: "opacity-0",
     height: "h-0",
-    position: "relative",
-    zIndex: "-z-50",
   },
   base: {
+    position: "relative",
+    zIndex: "z-50",
     transition: "transition ease-in-out",
     maxWidth: "max-w-[250px]",
     backgroundColor: "bg-white",
@@ -84,6 +90,7 @@ const dropdownListItem = tw.style({
   ":hover": {
     color: "hover:text-purple",
   },
+  minWidth: "min-w-[255px]",
   display: "flex",
   justifyContent: "justify-between",
   alignItems: "items-center",
@@ -93,7 +100,7 @@ const dropdownListItem = tw.style({
 const selectContainer = tw.style({
   display: "flex",
   flexDirection: "flex-col",
-  gap: "gap-[16px]",
+  // gap: "gap-[16px]",
 });
 
 export function SortBy({
@@ -123,7 +130,7 @@ export function SortBy({
           <span className={selectedItem.class}>
             {selected
               .split("_")
-              .map((w) => `${w[0].toUpperCase()}${w.slice(1, w.length)}`)
+              .map((w) => capitalize(w))
               .join(" ")}
           </span>
         </div>
@@ -164,7 +171,7 @@ export function SortBy({
               <a className="block py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
                 {o
                   .split("_")
-                  .map((w) => `${w[0].toUpperCase()}${w.slice(1, w.length)}`)
+                  .map((w) => capitalize(w))
                   .join(" ")}
               </a>
               <svg

@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import { capitalize } from "../lib/helpers";
 import { tw } from "../lib/tailwindest";
 const select = tw.style({
   ":active": {
@@ -121,7 +122,7 @@ export function Dropdown({
         <span className={selectedItem.class}>
           {selected
             .split("_")
-            .map((w) => `${w[0].toUpperCase()}${w.slice(1, w.length)}`)
+            .map((w) => capitalize(w))
             .join(" ")}
         </span>
         <svg
@@ -154,7 +155,7 @@ export function Dropdown({
               <a className="block py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
                 {o
                   .split("_")
-                  .map((w) => `${w[0].toUpperCase()}${w.slice(1, w.length)}`)
+                  .map((w) => capitalize(w))
                   .join(" ")}
               </a>
               <svg

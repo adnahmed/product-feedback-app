@@ -2,6 +2,7 @@
 import data from "@/app/data.json";
 import { useContext } from "react";
 import { CategoriesContexts } from "../contexts/categoriesProvider";
+import { capitalize } from "../lib/helpers";
 import { tw } from "../lib/tailwindest";
 import { LinkButton } from "./LinkButton";
 export const categories = ["All"].concat([
@@ -52,7 +53,9 @@ export function CategorySelection() {
           activated={selectedCategories.includes(category)}
           onClick={LinkButtonClick}
           key={category}
-        >{`${category[0].toUpperCase()}${category.slice(1, category.length)}`}</LinkButton>
+        >
+          {capitalize(category)}
+        </LinkButton>
       ))}
     </div>
   );
