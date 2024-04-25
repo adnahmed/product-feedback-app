@@ -13,7 +13,7 @@ import {
 export function ProductRequestList() {
   const sortContext = useContext(SortOrderContexts);
   return (
-    <section>
+    <section className="flex flex-col gap-[24px] mx-[24px] table:mx-[41px] desktop:mx-[30px]">
       {data.productRequests
         .sort((a_pr, b_pr) => {
           switch (sortContext.order) {
