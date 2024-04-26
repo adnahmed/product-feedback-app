@@ -8,6 +8,7 @@ const titleBar = tw.style({
   display: "flex",
   position: "relative",
   maxWidth: "max-w-[825px]",
+  maxHeight: "max-h-[92px]",
   alignItems: "items-center",
   justifyContent: "justify-between",
   backgroundColor: "bg-blue-dark-2",
@@ -19,9 +20,14 @@ const titleBar = tw.style({
     justifyContent: "tablet:justify-between",
     marginX: "tablet:mx-[24px]",
     marginTop: "tablet:mt-[40px]",
+    marginBottom: "tablet:mb-[20px]",
   },
   "@desktop": {
-    marginTop: "desktop:-mt-0",
+    marginTop: "desktop:mt-0",
+    gridColumnStart: "desktop:col-start-2",
+    gridColumnEnd: "desktop:col-end-2",
+    gridRowStart: "desktop:row-start-1",
+    gridRowEnd: "desktop:row-end-1",
   },
 });
 export function SuggestionsTitleBar() {

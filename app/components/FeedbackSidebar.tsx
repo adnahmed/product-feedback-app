@@ -55,6 +55,8 @@ const sidebarContainer = tw.style({
   zIndex: "z-10",
   "@tablet": {
     display: "tablet:flex",
+    marginX: "tablet:mx-[24px]",
+    marginTop: "tablet:mt-[56px]",
     alignItems: "tablet:items-center",
     gap: "tablet:gap-[24px]",
   },
@@ -62,6 +64,12 @@ const sidebarContainer = tw.style({
     display: "desktop:flex",
     gap: "desktop:gap-[24px]",
     flexDirection: "desktop:flex-col",
+    gridColumnStart: "desktop:col-start-1",
+    gridColumnEnd: "desktop:col-end-1",
+    gridRow: "desktop:row-span-2",
+    alignItems: "desktop:items-end",
+    marginX: "desktop:mx-0",
+    marginTop: "desktop:mt-0",
   },
 });
 const shade = tw.toggle({
