@@ -38,6 +38,9 @@ const inputContainer = tw.style({
   maxWidth: "max-w-[255px]",
   flexDirection: "flex-col",
   gap: "gap-1",
+  "@tablet": {
+    maxWidth: "tablet:max-w-full",
+  },
 });
 
 const message = tw.style({
