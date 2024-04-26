@@ -8,13 +8,13 @@ import { LinkButton } from "./LinkButton";
 
 export type ProductRequest = (typeof data.productRequests)[number];
 const productRequestContainer = tw.style({
-  display: "flex",
+  display: "grid",
   flexGrow: "grow",
   maxWidth: "max-w-[327px]",
-  justifyContent: "justify-between",
-  alignItems: "items-center",
   paddingX: "px-[32px]",
   paddingY: "py-[28px]",
+  gridTemplateColumns: "grid-cols-[1fr]",
+  gridTemplateRows: "grid-rows-[auto,auto,auto]",
   backgroundColor: "bg-white",
   borderRadius: "rounded-xl",
   "@mobile": {
@@ -32,21 +32,24 @@ export function ProductRequest({
 }) {
   return (
     <div className={productRequestContainer.class}>
-      <div className="flex flex-col-reverse tablet:flex-row justify-center items-start tablet:items-center gap-[16px] tablet:gap-[40px]">
+      <div className="row-start-3 row-end-3 mt-[16px]">
         <LinkButton icon={true}>{productRequest.upvotes.toString()}</LinkButton>
-        <Link
-          key={productRequest.id}
-          href={`/product-request/${productRequest.id}`}
-        >
-          {" "}
-          <div className="flex flex-col items-start gap-1">
-            <h2 className="text-blue-dark-2">{productRequest.title}</h2>
-            <p>{productRequest.description}</p>
-            <LinkButton>{capitalize(productRequest.category)}</LinkButton>
-          </div>
-        </Link>
       </div>
-      <div className="flex justify-center items-center gap-1">
+      <Link
+        className="row-start-1 row-end-1 col-span-2"
+        key={productRequest.id}
+        href={`/product-request/${productRequest.id}`}
+      >
+        {" "}
+        <div className="flex flex-col shrink items-start gap-1">
+          <h2 className="text-blue-dark-2">{productRequest.title}</h2>
+          <p>{productRequest.description}</p>
+        </div>
+      </Link>
+      <div className="row-start-2 row-end-2 mt-[8px]">
+        <LinkButton>{capitalize(productRequest.category)}</LinkButton>
+      </div>
+      <div className="flex justify-center items-center gap-1 justify-self-end row-start-3 row-end-3">
         <Image src={commentIcon} alt="comment icon" />
         <span>{productRequest.comments?.length ?? 0}</span>
       </div>

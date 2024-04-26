@@ -7,7 +7,7 @@ const linkButton = tw.variants({
       icon: {
         paddingY: "py-[8px]",
         fontWeight: "font-bold",
-        flexDirection: "flex-col",
+        flexDirection: "flex-row",
         backgroundColor: "bg-blue-lightest",
         stroke: "stroke-blue",
         ":hover": {
@@ -17,6 +17,9 @@ const linkButton = tw.variants({
           backgroundColor: "active:bg-blue",
           color: "active:text-white",
           stroke: "active:stroke-gray",
+        },
+        "@tablet": {
+          flexDirection: "tablet:flex-col",
         },
       },
       "no-icon": {
