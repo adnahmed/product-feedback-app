@@ -10,11 +10,11 @@ export const MOST_COMMENTS = "most_comments";
 export const LEAST_COMMENTS = "least_comments";
 const select = tw.style({
   position: "relative",
-  zIndex: "z-50",
   color: "text-gray",
-  fontSize: "text-sm",
+  fontSize: "text-[13px]",
   outlineStyle: "outline-none",
-  width: "w-max",
+  width: "w-full",
+  height: "h-max",
   gap: "gap-2",
   paddingY: "py-[26px]",
   paddingX: "px-[18px]",
@@ -23,6 +23,9 @@ const select = tw.style({
   alignItems: "items-center",
   borderRadius: "rounded-md",
   backgroundColor: "bg-blue-dark-2",
+  "@tablet": {
+    fontSize: "tablet:text-sm",
+  },
 });
 
 const selectedItem = tw.style({
@@ -51,6 +54,7 @@ const dropdown = tw.toggle({
   falsy: {
     opacity: "opacity-0",
     height: "h-0",
+    zIndex: "-z-50",
     width: "w-0",
   },
   base: {

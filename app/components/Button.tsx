@@ -21,8 +21,8 @@ const button = tw.toggle({
     gap: "gap-4",
     fontSize: "text-sm",
     transitionDuration: "duration-300",
-    "@md": {
-      paddingX: "md:px-[24px]",
+    "@tablet": {
+      paddingX: "tablet:px-[24px]",
     },
   },
 });

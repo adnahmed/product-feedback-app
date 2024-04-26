@@ -9,10 +9,12 @@ const titleBar = tw.style({
   position: "relative",
   maxWidth: "max-w-[825px]",
   alignItems: "items-center",
+  justifyContent: "justify-between",
   backgroundColor: "bg-blue-dark-2",
+  paddingX: "px-[10px]",
   borderRadius: "rounded-none",
-  paddingX: "px-[16px]",
   "@tablet": {
+    paddingX: "tablet:px-[20px]",
     borderRadius: "tablet:rounded-md",
     justifyContent: "tablet:justify-between",
     marginX: "tablet:mx-[24px]",

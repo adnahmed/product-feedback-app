@@ -22,6 +22,58 @@ const productRequestContainer = tw.style({
   },
   "@tablet": {
     maxWidth: "tablet:max-w-[825px]",
+    gridTemplateColumns: "tablet:grid-cols-[max-content,auto,max-content]",
+    gridTemplateRows: "tablet:grid-rows-[1fr, 1fr]",
+  },
+});
+
+const upvote = tw.style({
+  gridRowStart: "row-start-3",
+  gridRowEnd: "row-end-3",
+  "@tablet": {
+    marginRight: "tablet:mr-[40px]",
+    gridRow: "tablet:row-span-2",
+    gridColumnStart: "tablet:col-start-1",
+    gridColumnEnd: "tablet:col-end-1",
+    justifySelf: "tablet:justify-self-start",
+  },
+});
+
+const requestLink = tw.style({
+  gridRowStart: "row-start-1",
+  gridRowEnd: "row-end-1",
+  gridColumn: "col-span-2",
+  "@tablet": {
+    gridColumn: "tablet:col-span-1",
+    gridColumnStart: "tablet:col-start-2",
+    gridColumnEnd: "tablet:col-end-2",
+  },
+});
+
+const category = tw.style({
+  gridRowStart: "row-start-2",
+  gridRowEnd: "row-end-2",
+  marginTop: "mt-[8px]",
+  marginBottom: "mb-[16px]",
+  "@tablet": {
+    gridRowStart: "tablet:row-start-2",
+    gridRowEnd: "tablet:row-end-2",
+    gridColumnStart: "tablet:col-start-2",
+    gridColumnEnd: "tablet:col-end-2",
+    marginBottom: "tablet:mb-[0px]",
+  },
+});
+
+const commentIconContainer = tw.style({
+  display: "flex",
+  justifyContent: "justify-center",
+  alignItems: "items-center",
+  gap: "gap-1",
+  placeSelf: "place-self-center",
+  gridRowStart: "row-start-3",
+  gridRowEnd: "row-end-3",
+  "@tablet": {
+    gridRow: "tablet:row-span-2",
   },
 });
 
@@ -32,24 +84,23 @@ export function ProductRequest({
 }) {
   return (
     <div className={productRequestContainer.class}>
-      <div className="row-start-3 row-end-3 mt-[16px]">
+      <div className={upvote.class}>
         <LinkButton icon={true}>{productRequest.upvotes.toString()}</LinkButton>
       </div>
       <Link
-        className="row-start-1 row-end-1 col-span-2"
+        className={requestLink.class}
         key={productRequest.id}
         href={`/product-request/${productRequest.id}`}
       >
-        {" "}
         <div className="flex flex-col shrink items-start gap-1">
           <h2 className="text-blue-dark-2">{productRequest.title}</h2>
           <p>{productRequest.description}</p>
         </div>
       </Link>
-      <div className="row-start-2 row-end-2 mt-[8px]">
+      <div className={category.class}>
         <LinkButton>{capitalize(productRequest.category)}</LinkButton>
       </div>
-      <div className="flex justify-center items-center gap-1 justify-self-end row-start-3 row-end-3">
+      <div className={commentIconContainer.class}>
         <Image src={commentIcon} alt="comment icon" />
         <span>{productRequest.comments?.length ?? 0}</span>
       </div>
