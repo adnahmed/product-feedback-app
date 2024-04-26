@@ -22,7 +22,9 @@ const layout = tw.style({
   marginBottom: "mb-[55px]",
   "@desktop": {
     display: "desktop:grid",
-    // gridTemplateColumns: "desktop:grid-cols-[1fr,auto]",
+    width: "desktop:w-max",
+    marginX: "desktop:mx-auto",
+    gridTemplateColumns: "desktop:grid-cols-[auto,1fr]",
     gridTemplateRows: "desktop:grid-rows-[92px,auto]",
     marginTop: "desktop:mt-[94px]",
     marginBottom: "desktop:mb-[129px]",
