@@ -21,6 +21,16 @@ const categoriesContainer = tw.style({
   borderRadius: "rounded-md",
 });
 export function CategorySelection() {
+  return (
+    <div className={categoriesContainer.class}>
+      {categories.map((category) => (
+        <CategorySelector category={category} key={category} />
+      ))}
+    </div>
+  );
+}
+
+export function CategorySelector({ category }: { category: string }) {
   const { categories: selectedCategories, setCategories } =
     useContext(CategoriesContexts);
   const LinkButtonClick = (category: string) => {
@@ -47,16 +57,12 @@ export function CategorySelection() {
     }
   };
   return (
-    <div className={categoriesContainer.class}>
-      {categories.map((category) => (
-        <LinkButton
-          activated={selectedCategories.includes(category)}
-          onClick={LinkButtonClick}
-          key={category}
-        >
-          {capitalize(category)}
-        </LinkButton>
-      ))}
-    </div>
+    <LinkButton
+      activated={selectedCategories.includes(category)}
+      onClick={LinkButtonClick}
+      key={category}
+    >
+      {capitalize(category)}
+    </LinkButton>
   );
 }

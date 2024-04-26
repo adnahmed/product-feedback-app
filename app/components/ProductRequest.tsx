@@ -2,8 +2,8 @@ import data from "@/app/data.json";
 import commentIcon from "@/public/comment.svg";
 import Image from "next/image";
 import Link from "next/link";
-import { capitalize } from "../lib/helpers";
 import { tw } from "../lib/tailwindest";
+import { CategorySelector } from "./CategorySelection";
 import { LinkButton } from "./LinkButton";
 
 export type ProductRequest = (typeof data.productRequests)[number];
@@ -98,7 +98,7 @@ export function ProductRequest({
         </div>
       </Link>
       <div className={category.class}>
-        <LinkButton>{capitalize(productRequest.category)}</LinkButton>
+        <CategorySelector category={productRequest.category} />
       </div>
       <div className={commentIconContainer.class}>
         <Image src={commentIcon} alt="comment icon" />

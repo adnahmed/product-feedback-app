@@ -1,6 +1,7 @@
 "use client";
 import data from "@/app/data.json";
 import { useContext } from "react";
+import { CategoriesContexts } from "../contexts/categoriesProvider";
 import { SortOrderContexts } from "../contexts/SortProvider";
 import { ProductRequest } from "./ProductRequest";
 import {
@@ -12,6 +13,7 @@ import {
 
 export function ProductRequestList() {
   const sortContext = useContext(SortOrderContexts);
+  const { categories: selectedCategories } = useContext(CategoriesContexts);
   return (
     <section className="flex flex-col gap-[24px] mx-[24px] table:mx-[41px] desktop:mx-[30px]">
       {data.productRequests
@@ -52,12 +54,18 @@ export function ProductRequestList() {
               return 0;
           }
         })
-        .map((productRequest) => (
-          <ProductRequest
-            productRequest={productRequest}
-            key={productRequest.id}
-          />
-        ))}
+        .map((productRequest) => {
+          if (
+            selectedCategories.includes("All") ||
+            selectedCategories.includes(productRequest.category)
+          )
+            return (
+              <ProductRequest
+                productRequest={productRequest}
+                key={productRequest.id}
+              />
+            );
+        })}
     </section>
   );
 }
