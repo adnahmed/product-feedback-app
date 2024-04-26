@@ -13,7 +13,7 @@ const button = tw.toggle({
     display: "flex",
     alignItems: "items-center",
     justifyContent: "justify-center",
-    paddingX: "px-[24px]",
+    paddingX: "px-[16px]",
     paddingY: "py-[12px]",
     fontWeight: "font-bold",
     borderRadius: "rounded-md",
@@ -21,6 +21,9 @@ const button = tw.toggle({
     gap: "gap-4",
     fontSize: "text-sm",
     transitionDuration: "duration-300",
+    "@md": {
+      paddingX: "md:px-[24px]",
+    },
   },
 });
 

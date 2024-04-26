@@ -8,21 +8,21 @@ const titleBar = tw.style({
   display: "flex",
   position: "relative",
   maxWidth: "max-w-[825px]",
-  justifyContent: "justify-between",
   alignItems: "items-center",
   backgroundColor: "bg-blue-dark-2",
   borderRadius: "rounded-none",
   paddingX: "px-[16px]",
   "@tablet": {
     borderRadius: "tablet:rounded-md",
-    marginX: "tablet:mx-[30px]",
+    justifyContent: "tablet:justify-between",
+    marginX: "tablet:mx-[24px]",
   },
 });
 export function SuggestionsTitleBar() {
   return (
     <div className={titleBar.class}>
       <div className="flex justify-center items-center">
-        <div className="md:flex gap-[16px] justify-center hidden items-center">
+        <div className="tablet:flex gap-[16px] justify-center hidden items-center">
           <Image src={bulb} alt="" />
           <div className="text-white font-bold text-[18px]">
             <span>

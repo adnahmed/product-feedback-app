@@ -51,6 +51,7 @@ const dropdown = tw.toggle({
   falsy: {
     opacity: "opacity-0",
     height: "h-0",
+    width: "w-0",
   },
   base: {
     position: "relative",
@@ -100,7 +101,6 @@ const dropdownListItem = tw.style({
 const selectContainer = tw.style({
   display: "flex",
   flexDirection: "flex-col",
-  // gap: "gap-[16px]",
 });
 
 export function SortBy({
