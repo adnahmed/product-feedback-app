@@ -22,14 +22,14 @@ const layout = tw.style({
   marginBottom: "mb-[55px]",
   "@desktop": {
     display: "desktop:grid",
-    width: "desktop:w-max",
-    marginX: "desktop:mx-auto",
     gridTemplateColumns: "desktop:grid-cols-[auto,1fr]",
     gridTemplateRows: "desktop:grid-rows-[92px,auto]",
     marginTop: "desktop:mt-[94px]",
     marginBottom: "desktop:mb-[129px]",
   },
   "@tablet": {
+    width: "tablet:w-max",
+    marginX: "tablet:mx-auto",
     marginBottom: "tablet:mb-[113px]",
   },
 });
