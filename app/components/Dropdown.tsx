@@ -48,16 +48,19 @@ const arrow = tw.toggle({
 const dropdown = tw.toggle({
   truthy: {
     opacity: "opacity-100",
+    position: "absolute",
+    zIndex: "z-[500]",
   },
   falsy: {
     opacity: "opacity-0",
     position: "relative",
+    height: "h-0",
+    width: "w-0",
     zIndex: "-z-50",
   },
   base: {
-    top: "-top-[50px]",
-    zIndex: "z-10",
     position: "relative",
+    zIndex: "z-50",
     transition: "transition ease-in-out",
     maxWidth: "max-w-[255px]",
     backgroundColor: "bg-white",
@@ -87,6 +90,7 @@ const dropdownListItem = tw.style({
   ":hover": {
     color: "hover:text-purple",
   },
+  minWidth: "min-w-[255px]",
   display: "flex",
   justifyContent: "justify-between",
   alignItems: "items-center",
