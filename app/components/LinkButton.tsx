@@ -5,6 +5,7 @@ const linkButton = tw.variants({
   variants: {
     type: {
       icon: {
+        paddingY: "py-[8px]",
         fontWeight: "font-bold",
         flexDirection: "flex-col",
         backgroundColor: "bg-blue-lightest",
@@ -19,6 +20,7 @@ const linkButton = tw.variants({
         },
       },
       "no-icon": {
+        paddingY: "py-[4px]",
         fontWeight: "font-semibold",
         color: "text-blue",
         backgroundColor: "bg-blue-lightest",
@@ -41,7 +43,6 @@ const linkButton = tw.variants({
   },
   base: {
     display: "flex",
-    paddingY: "py-[4px]",
     paddingX: "px-[14px]",
     borderRadius: "rounded-lg",
     alignItems: "items-center",
