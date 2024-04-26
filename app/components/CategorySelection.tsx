@@ -24,7 +24,7 @@ const categoriesContainer = tw.style({
 });
 export function CategorySelection() {
   return (
-    <div className="h-[178px] bg-white rounded-xl w-[223px] desktop:w-[255px]">
+    <div className="h-[178px] bg-white rounded-xl w-[223px] desktop:w-[255px] overflow-y-auto no-scrollbar">
       <div className={categoriesContainer.class}>
         {categories.map((category) => (
           <CategorySelector category={category} key={category} />
