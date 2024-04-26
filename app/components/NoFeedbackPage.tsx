@@ -1,5 +1,6 @@
 import notFoundIcon from "@/public/not-found.svg";
 import Image from "next/image";
+import Link from "next/link";
 import { tw } from "../lib/tailwindest";
 import Button from "./Button";
 
@@ -58,9 +59,9 @@ export function NoFeedbackPage() {
         Got a suggestion? Found a bug that needs to be squashed? We love hearing
         about new ideas to improve our app.
       </span>
-      <div className={addFeedback.class}>
+      <Link href={"/new-feedback"} className={addFeedback.class}>
         <Button color="purple">+ Add Feedback</Button>
-      </div>
+      </Link>
     </div>
   );
 }

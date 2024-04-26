@@ -1,6 +1,7 @@
 import data from "@/app/data.json";
 import bulb from "@/public/bulb.svg";
 import Image from "next/image";
+import Link from "next/link";
 import { tw } from "../lib/tailwindest";
 import Button from "./Button";
 import { SortBy } from "./SortBy";
@@ -48,7 +49,9 @@ export function SuggestionsTitleBar() {
         </div>
         <SortBy />
       </div>
-      <Button color="purple">+ Add Feedback</Button>
+      <Link href={"/new-feedback"}>
+        <Button color="purple">+ Add Feedback</Button>
+      </Link>
     </div>
   );
 }
