@@ -42,25 +42,21 @@ const arrow = tw.toggle({
     transition: "transition ease-out",
     width: "w-2.5",
     height: "h-2.5",
-    marginLeft: "ml-1",
   },
 });
 const dropdown = tw.toggle({
   truthy: {
     opacity: "opacity-100",
     position: "absolute",
-    zIndex: "z-[500]",
+    zIndex: "z-50",
   },
   falsy: {
     opacity: "opacity-0",
-    position: "relative",
     height: "h-0",
     width: "w-0",
     zIndex: "-z-50",
   },
   base: {
-    position: "relative",
-    zIndex: "z-50",
     transition: "transition ease-in-out",
     maxWidth: "max-w-[255px]",
     backgroundColor: "bg-white",
@@ -77,9 +73,7 @@ const dropdown = tw.toggle({
 const dropdownList = tw.style({
   divideY: "divide-y",
   divideColor: "divide-gray",
-
   paddingY: "py-2",
-  paddingX: "px-4",
   color: "text-gray-dark",
   "@dark": {
     color: "dark:text-gray-light",
@@ -94,6 +88,7 @@ const dropdownListItem = tw.style({
   display: "flex",
   justifyContent: "justify-between",
   alignItems: "items-center",
+  paddingX: "px-[24px]",
 });
 
 const selectContainer = tw.style({

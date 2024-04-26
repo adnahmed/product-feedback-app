@@ -49,7 +49,7 @@ const dropdown = tw.toggle({
     opacity: "opacity-100",
     position: "absolute",
     top: "top-20",
-    zIndex: "z-[500]",
+    zIndex: "z-50",
   },
   falsy: {
     opacity: "opacity-0",
@@ -58,8 +58,6 @@ const dropdown = tw.toggle({
     width: "w-0",
   },
   base: {
-    position: "relative",
-    zIndex: "z-50",
     transition: "transition ease-in-out",
     maxWidth: "max-w-[250px]",
     backgroundColor: "bg-white",
