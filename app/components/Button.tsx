@@ -57,6 +57,10 @@ const coloredButton = tw.rotary({
     backgroundColor: "bg-white",
     stroke: "stroke-blue",
   },
+  gray: {
+    backgroundColor: "bg-gray-light",
+    stroke: "stroke-blue",
+  },
   base: {
     stroke: "stroke-gray",
   },
@@ -77,9 +81,11 @@ const Button = ({
     <button
       onClick={onClick}
       className={tw.mergeProps(
-        button.style(color === "white"),
+        button.style(["white", "gray"].includes(color)),
         coloredButton
-          .compose(iconButton.style(!!icon || color === "white"))
+          .compose(
+            iconButton.style(!!icon || ["white", "gray"].includes(color)),
+          )
           .style(color),
       )}
     >
