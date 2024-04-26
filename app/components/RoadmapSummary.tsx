@@ -7,10 +7,13 @@ const summaryContainer = tw.style({
   flexDirection: "flex-col",
   gap: "gap-[12px]",
   padding: "p-[18px]",
-  borderRadius: "rounded-md",
+  borderRadius: "rounded-xl",
   maxWidth: "max-w-[255px]",
   backgroundColor: "bg-white",
   width: "w-[223px]",
+  "@tablet": {
+    height: "tablet:h-[178px]",
+  },
   "@desktop": {
     width: "desktop:w-[255px]",
   },

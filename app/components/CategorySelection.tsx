@@ -19,12 +19,12 @@ const categoriesContainer = tw.style({
   flexWrap: "flex-wrap",
   paddingY: "py-[14px]",
   paddingX: "px-[18px]",
-  borderRadius: "rounded-md",
+  borderRadius: "rounded-xl",
   justifyItems: "justify-items-start",
 });
 export function CategorySelection() {
   return (
-    <div className="h-[178px] bg-white w-[223px] desktop:w-[255px]">
+    <div className="h-[178px] bg-white rounded-xl w-[223px] desktop:w-[255px]">
       <div className={categoriesContainer.class}>
         {categories.map((category) => (
           <CategorySelector category={category} key={category} />

@@ -16,13 +16,13 @@ const appName = tw.style({
     width: "tablet:w-[223px]",
     height: "tablet:h-[178px]",
     paddingY: "tablet:py-[24px]",
-    borderRadius: "tablet:rounded-lg",
+    borderRadius: "tablet:rounded-xl",
   },
   "@desktop": {
     width: "desktop:w-[255px]",
     paddingY: "desktop:py-[24px]",
-    borderRadius: "desktop:rounded-lg",
     height: "desktop:h-[137px]",
+    borderRadius: "desktop:rounded-xl",
   },
 });
 const name = tw.style({
