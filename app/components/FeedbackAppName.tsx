@@ -1,10 +1,14 @@
+"use client";
+import cross from "@/public/cross.svg";
+import menu from "@/public/menu.svg";
+import Image from "next/image";
+import { Dispatch, SetStateAction } from "react";
 import { tw } from "../lib/tailwindest";
 
 const appName = tw.style({
   display: "flex",
-  flexDirection: "flex-col",
-  justifyContent: "justify-end",
-  alignItems: "items-start",
+  justifyContent: "justify-between",
+  alignItems: "items-center",
   paddingX: "px-[24px]",
   paddingY: "py-[4px]",
   height: "h-[72px]",
@@ -21,7 +25,16 @@ const appName = tw.style({
     height: "desktop:h-[137px]",
   },
 });
-export function FeedbackAppName() {
+const name = tw.style({
+  placeSelf: "place-self-end",
+});
+export function FeedbackAppName({
+  menuOpen,
+  setMenuOpen,
+}: {
+  menuOpen: boolean;
+  setMenuOpen: Dispatch<SetStateAction<boolean>>;
+}) {
   return (
     <div
       className={`${appName.class}`}
@@ -30,12 +43,29 @@ export function FeedbackAppName() {
           "radial-gradient(128.88% 128.88% at 103.9% -10.39%, #E84D70 0%, #A337F6 53.09%, #28A7ED 100%)",
       }}
     >
-      <h1 className="text-white font-bold text-[15px] tablet:text-[20px] leading-tight ">
-        Frontend Mentor
-      </h1>
-      <h2 className="text-gray-light text-[13px] font-medium tablet:text-[15px]">
-        Feedback Board
-      </h2>
+      <div className={name.class}>
+        <h1 className="text-white font-bold text-[15px] tablet:text-[20px] leading-tight ">
+          Frontend Mentor
+        </h1>
+        <h2 className="text-gray-light text-[13px] font-medium tablet:text-[15px]">
+          Feedback Board
+        </h2>
+      </div>
+      <div className="tablet:hidden justify-end">
+        {menuOpen ? (
+          <Image
+            onClick={() => setMenuOpen && setMenuOpen(false)}
+            src={cross}
+            alt="Cross Icon"
+          />
+        ) : (
+          <Image
+            onClick={() => setMenuOpen && setMenuOpen(true)}
+            src={menu}
+            alt="Menu Icon"
+          />
+        )}
+      </div>
     </div>
   );
 }

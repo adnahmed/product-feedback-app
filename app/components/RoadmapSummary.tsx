@@ -8,7 +8,12 @@ const summaryContainer = tw.style({
   gap: "gap-[12px]",
   padding: "p-[18px]",
   borderRadius: "rounded-md",
-  maxWidth: "max-w-[223px]",
+  maxWidth: "max-w-[255px]",
+  backgroundColor: "bg-white",
+  width: "w-[223px]",
+  "@desktop": {
+    width: "desktop:w-[255px]",
+  },
 });
 const summaryHeader = tw.style({
   display: "flex",

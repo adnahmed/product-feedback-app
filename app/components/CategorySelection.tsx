@@ -14,18 +14,22 @@ export type Categories = typeof categories;
 const categoriesContainer = tw.style({
   display: "flex",
   maxWidth: "max-w-[223px]",
+  height: "h-max",
   gap: "gap-[8px]",
   flexWrap: "flex-wrap",
-  paddingY: "py-[24px]",
+  paddingY: "py-[14px]",
   paddingX: "px-[18px]",
   borderRadius: "rounded-md",
+  justifyItems: "justify-items-start",
 });
 export function CategorySelection() {
   return (
-    <div className={categoriesContainer.class}>
-      {categories.map((category) => (
-        <CategorySelector category={category} key={category} />
-      ))}
+    <div className="h-[178px] bg-white w-[223px] desktop:w-[255px]">
+      <div className={categoriesContainer.class}>
+        {categories.map((category) => (
+          <CategorySelector category={category} key={category} />
+        ))}
+      </div>
     </div>
   );
 }
