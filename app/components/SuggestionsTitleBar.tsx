@@ -18,6 +18,10 @@ const titleBar = tw.style({
     borderRadius: "tablet:rounded-md",
     justifyContent: "tablet:justify-between",
     marginX: "tablet:mx-[24px]",
+    marginTop: "tablet:mt-[40px]",
+  },
+  "@desktop": {
+    marginTop: "desktop:-mt-0",
   },
 });
 export function SuggestionsTitleBar() {
