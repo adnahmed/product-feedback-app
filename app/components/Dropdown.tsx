@@ -13,7 +13,6 @@ const select = tw.style({
     borderWidth: "focus:border-[1.5px]",
     borderStyle: "focus:border-solid",
   },
-  position: "relative",
   color: "text-blue-dark-2",
   outlineStyle: "outline-none",
   fontSize: "text-sm",
@@ -24,7 +23,11 @@ const select = tw.style({
   maxWidth: "max-w-[255px]",
   alignItems: "items-center",
   borderRadius: "rounded-md",
+  position: "relative",
   backgroundColor: "bg-gray",
+  "@tablet": {
+    maxWidth: "tablet:max-w-full",
+  },
 });
 
 const selectedItem = tw.style({
@@ -49,6 +52,10 @@ const dropdown = tw.toggle({
     opacity: "opacity-100",
     position: "absolute",
     zIndex: "z-50",
+    marginTop: "mt-[55px]",
+    "@tablet": {
+      width: "tablet:w-full",
+    },
   },
   falsy: {
     opacity: "opacity-0",
@@ -66,6 +73,9 @@ const dropdown = tw.toggle({
     "@dark": {
       backgroundColor: "dark:bg-gray",
       divideColor: "dark:divide-gray-light",
+    },
+    "@tablet": {
+      maxWidth: "tablet:max-w-full",
     },
   },
 });
@@ -89,6 +99,9 @@ const dropdownListItem = tw.style({
   justifyContent: "justify-between",
   alignItems: "items-center",
   paddingX: "px-[24px]",
+  "@tablet": {
+    width: "tablet:w-full",
+  },
 });
 
 const selectContainer = tw.style({
@@ -132,9 +145,9 @@ export function Dropdown({
           viewBox="0 0 10 6"
         >
           <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
             d="m1 1 4 4 4-4"
           />
         </svg>
