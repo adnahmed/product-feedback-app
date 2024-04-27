@@ -100,6 +100,7 @@ export default function NewFeedback() {
       comments: [],
     });
     setData(data);
+    toast.dismiss();
     toast.success("Feedback added successfully!");
     // router.back();
   };

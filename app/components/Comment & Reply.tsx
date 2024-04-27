@@ -2,7 +2,10 @@
 
 import initial_data from "@/public/data.json";
 import Image from "next/image";
+import { useParams } from "next/navigation";
 import { useState } from "react";
+import toast from "react-hot-toast";
+import useLocalStorageState from "use-local-storage-state";
 import { tw } from "../lib/tailwindest";
 import Button from "./Button";
 
@@ -40,10 +43,12 @@ const replyButton = tw.style({
 });
 
 export function Reply({
+  commentId,
   reply,
   commenterName,
   commenterUsername,
 }: {
+  commentId: number;
   reply: {
     content: string;
     replyingTo: string;
@@ -88,23 +93,72 @@ export function Reply({
         <span className="text-purple font-bold">{`@${reply.replyingTo}`}</span>{" "}
         {reply.content}
       </p>
-      {showReplyForm && <ReplyForm />}
+      {showReplyForm && (
+        <ReplyForm commentId={commentId} setShowReplyForm={setShowReplyForm} />
+      )}
     </div>
   );
 }
 
-function ReplyForm() {
+function ReplyForm({
+  commentId,
+  setShowReplyForm,
+}: {
+  commentId: number;
+  setShowReplyForm?: (show: boolean) => void;
+}) {
+  const [reply, setReply] = useState("");
+  const { "product-request-id": productRequestId } = useParams();
+  const [data, setData] = useLocalStorageState("data", {
+    defaultValue: initial_data,
+  });
+  const post = data.productRequests.find(
+    (pr) => pr?.id.toString() === productRequestId,
+  );
+  const PostReply = () => {
+    if (reply.length === 0) {
+      toast.dismiss();
+      toast.error("Reply cannot be empty");
+      return;
+    }
+    if (!post?.comments) return;
+    const comment = post?.comments.find((c) => c.id === commentId);
+    if (!comment) {
+      setShowReplyForm?.(false);
+      return;
+    }
+    const new_reply = {
+      content: reply,
+      replyingTo: comment.user.username,
+      user: {
+        image: data.currentUser.image,
+        name: data.currentUser.name,
+        username: data.currentUser.username,
+      },
+    };
+    if (!comment?.replies)
+      /* @ts-ignore */
+      comment.replies = [new_reply];
+    else comment.replies.push(new_reply);
+    setData(data);
+    setShowReplyForm?.(false);
+  };
+
   return (
-    <form className="flex items-start pt-[24px] rounded-lg gap-[16px]">
+    <div className="flex items-start pt-[24px] rounded-lg gap-[16px]">
       <textarea
+        value={reply}
+        onChange={(e) => setReply(e.target.value)}
         className="max-w-[416px] tablet:max-w-full w-full resize-none rounded-lg max-h-[80px] active:outline-blue focus:outline-blue bg-gray py-[16px] px-[24px]"
         maxLength={250}
         placeholder="Reply to this comment"
       />
       <div className="text-[5px]">
-        <Button color="purple">Reply</Button>
+        <Button onClick={PostReply} color="purple">
+          Reply
+        </Button>
       </div>
-    </form>
+    </div>
   );
 }
 
@@ -142,10 +196,13 @@ export function Comment({ comment }: { comment: Comment }) {
         </button>
       </div>
       <p className={content.class}>{comment.content}</p>
-      {showReplyForm && <ReplyForm />}
+      {showReplyForm && (
+        <ReplyForm commentId={comment.id} setShowReplyForm={setShowReplyForm} />
+      )}
       <div className={replies.class}>
         {comment.replies?.map((reply) => (
           <Reply
+            commentId={comment.id}
             key={crypto.randomUUID()}
             reply={reply}
             commenterName={comment.user.name}
@@ -165,11 +222,42 @@ const commentarea = tw.style({
 
 export function CommentArea() {
   const [comment, setComment] = useState("");
+  const { "product-request-id": productRequestId } = useParams();
+  const [data, setData] = useLocalStorageState("data", {
+    defaultValue: initial_data,
+  });
+  const post = data.productRequests.find(
+    (pr) => pr?.id.toString() === productRequestId,
+  );
+  const PostComment = () => {
+    if (comment.length === 0) {
+      toast.dismiss();
+      toast.error("Comment cannot be empty");
+      return;
+    }
+
+    post?.comments?.push({
+      id:
+        post.comments.length === 0
+          ? 1
+          : post.comments.length === 1
+            ? post.comments[0].id + 1
+            : post.comments.reduce((a, b) => (a.id > b.id ? a : b)).id + 1,
+      content: comment,
+      user: {
+        image: data.currentUser.image,
+        name: data.currentUser.name,
+        username: data.currentUser.username,
+      },
+    });
+    setData(data);
+  };
+
   return (
     <div className={commentarea.class}>
       <p className="text-blue-dark-2 font-bold pb-[28px]">Add Comment</p>
       <textarea
-        value={comment}
+        required
         onChange={(e) => setComment(e.target.value)}
         className="w-full resize-none rounded-lg max-h-[80px] active:outline-blue focus:outline-blue bg-gray py-[16px] px-[24px] text-[15px]"
         maxLength={250}
@@ -177,7 +265,9 @@ export function CommentArea() {
       />
       <div className="flex flex-row justify-between items-center pt-[16px] text-gray-dark">
         <span>{250 - comment.length} characters left</span>
-        <Button color="purple">Post Comment</Button>
+        <Button onClick={PostComment} color="purple">
+          Post Comment
+        </Button>
       </div>
     </div>
   );

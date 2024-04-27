@@ -5,6 +5,7 @@ import { ProductRequest } from "@/app/components/ProductRequest";
 import { tw } from "@/app/lib/tailwindest";
 import initial_data from "@/public/data.json";
 import { notFound } from "next/navigation";
+import { Toaster } from "react-hot-toast";
 import useLocalStorageState from "use-local-storage-state";
 
 const form = tw.style({
@@ -46,6 +47,7 @@ export default function ProductRequestDetail({
 
   return (
     <section className={form.class}>
+      <Toaster />
       <ProductRequest productRequest={productRequest} />
       <div className={comments.class}>
         <p className="text-blue-dark-2 font-bold pt-[24px] pb-[28px]">

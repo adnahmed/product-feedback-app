@@ -26,7 +26,7 @@ export function Navbar({ productRequestId }: { productRequestId: string }) {
   );
   return (
     <div className={navbar.class}>
-      <BackButton>Go Back</BackButton>
+      <BackButton color="gray">Go Back</BackButton>
       {productRequest && (
         <Link href={`/edit-feedback/${productRequestId}`}>
           <Button color="blue">Edit Feedback</Button>

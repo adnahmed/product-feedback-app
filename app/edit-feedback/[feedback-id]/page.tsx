@@ -82,7 +82,7 @@ export default function EditFeedback({
   return (
     <div className={formPage.class}>
       <div className={back.class}>
-        <BackButton>Go Back</BackButton>
+        <BackButton color="gray">Go Back</BackButton>
       </div>
       <div className={form.class}>
         <Image
