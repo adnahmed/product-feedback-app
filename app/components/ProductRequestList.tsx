@@ -1,5 +1,5 @@
 "use client";
-import data from "@/app/data.json";
+import data from "@/public/data.json";
 import { useContext } from "react";
 import { CategoriesContexts } from "../contexts/categoriesProvider";
 import { SortOrderContexts } from "../contexts/SortProvider";
@@ -74,8 +74,9 @@ export function ProductRequestList() {
         })
         .map((productRequest) => {
           if (
-            selectedCategories.includes("All") ||
-            selectedCategories.includes(productRequest.category)
+            (selectedCategories.includes("All") ||
+              selectedCategories.includes(productRequest.category)) &&
+            productRequest.status === "suggestion"
           )
             return (
               <ProductRequest

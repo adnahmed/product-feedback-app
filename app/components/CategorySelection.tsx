@@ -1,5 +1,5 @@
 "use client";
-import data from "@/app/data.json";
+import data from "@/public/data.json";
 import { useContext } from "react";
 import { CategoriesContexts } from "../contexts/categoriesProvider";
 import { capitalize } from "../lib/helpers";

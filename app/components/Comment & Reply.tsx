@@ -1,6 +1,6 @@
 "use client";
 
-import data from "@/app/data.json";
+import data from "@/public/data.json";
 import Image from "next/image";
 import { useState } from "react";
 import { tw } from "../lib/tailwindest";

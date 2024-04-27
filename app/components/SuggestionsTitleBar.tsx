@@ -1,5 +1,5 @@
-import data from "@/app/data.json";
 import bulb from "@/public/bulb.svg";
+import data from "@/public/data.json";
 import Image from "next/image";
 import Link from "next/link";
 import { tw } from "../lib/tailwindest";

@@ -1,7 +1,7 @@
 import BackButton from "@/app/components/BackButton";
 import Button from "@/app/components/Button";
-import data from "@/app/data.json";
 import { tw } from "@/app/lib/tailwindest";
+import data from "@/public/data.json";
 import Link from "next/link";
 import { ReactNode } from "react";
 const navbar = tw.style({

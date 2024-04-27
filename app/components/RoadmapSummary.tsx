@@ -1,4 +1,4 @@
-import data from "@/app/data.json";
+import data from "@/public/data.json";
 import Link from "next/link";
 import { tw } from "../lib/tailwindest";
 import { BLUE_COLOR, Circle, ORANGE_COLOR, PURPLE_COLOR } from "./Circle";

@@ -1,4 +1,4 @@
-import data from "@/app/data.json";
+import data from "@/public/data.json";
 import { FeedbackSidebar } from "./components/FeedbackSidebar";
 import { NoFeedbackPage } from "./components/NoFeedbackPage";
 import { ProductRequestList } from "./components/ProductRequestList";

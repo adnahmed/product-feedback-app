@@ -1,7 +1,7 @@
 import { Comment, CommentArea } from "@/app/components/Comment & Reply";
 import { ProductRequest } from "@/app/components/ProductRequest";
-import data from "@/app/data.json";
 import { tw } from "@/app/lib/tailwindest";
+import data from "@/public/data.json";
 import { notFound } from "next/navigation";
 
 export async function generateStaticParams() {
