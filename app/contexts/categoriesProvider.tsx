@@ -21,7 +21,7 @@ export default function CategoriesProvider({
   children: ReactNode;
 }) {
   const [categories, setCategories] = useState<{
-    categories: Categories;
+    categories: string[];
   }>({
     categories: ["All"],
   });

@@ -1,16 +1,18 @@
 "use client";
 import { useRouter } from "next/navigation";
-import Button from "./Button";
+import { GetVariants } from "tailwindest";
+import Button, { coloredButton } from "./Button";
 
 function BackButton({
-  className,
+  color = "gray",
   children,
 }: React.PropsWithChildren<{
+  color: GetVariants<typeof coloredButton>;
   className?: string;
 }>) {
   const router = useRouter();
   return (
-    <Button color={"gray"} icon onClick={() => router.back()}>
+    <Button color={color} icon onClick={() => router.back()}>
       {children}
     </Button>
   );

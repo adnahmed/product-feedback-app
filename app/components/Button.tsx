@@ -41,7 +41,7 @@ const iconButton = tw.toggle({
   },
 });
 
-const coloredButton = tw.rotary({
+export const coloredButton = tw.rotary({
   purple: {
     backgroundColor: "bg-purple",
   },
