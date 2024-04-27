@@ -62,7 +62,7 @@ export default function NewFeedback() {
   return (
     <div className={formPage.class}>
       <div className={back.class}>
-        <BackButton>Go Back</BackButton>
+        <BackButton color="gray">Go Back</BackButton>
       </div>
       <div className={form.class}>
         <Image className="absolute -top-5 left-5" src={PlusIcon} alt="+ icon" />

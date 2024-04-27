@@ -1,5 +1,5 @@
 import { MouseEventHandler, ReactNode } from "react";
-import { GetVariants } from "tailwindest";
+import { GetVariants, Tailwindest } from "tailwindest";
 import { tw } from "../lib/tailwindest";
 import { LeftArrow } from "./LeftArrow";
 const button = tw.toggle({
@@ -69,10 +69,12 @@ export const coloredButton = tw.rotary({
 
 const Button = ({
   onClick,
+  height,
   color,
   icon = false,
   children,
 }: {
+  height?: Tailwindest["height"];
   color: GetVariants<typeof coloredButton>;
   icon?: boolean;
   onClick?: MouseEventHandler<HTMLButtonElement>;
@@ -86,6 +88,7 @@ const Button = ({
         coloredButton
           .compose(
             iconButton.style(!!icon || ["white", "gray"].includes(color)),
+            { height },
           )
           .style(color),
       )}

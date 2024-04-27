@@ -11,6 +11,7 @@ const categoriesContainer = tw.style({
   display: "flex",
   maxWidth: "max-w-[223px]",
   height: "h-max",
+  minHeight: "min-h-[78px]",
   gap: "gap-[8px]",
   flexWrap: "flex-wrap",
   paddingY: "py-[14px]",

@@ -1,7 +1,10 @@
 export const ORANGE_COLOR = "#f49f85";
 export const BLUE_COLOR = "#62bcfa";
 export const PURPLE_COLOR = "#ad1fea";
-type color = typeof ORANGE_COLOR | typeof BLUE_COLOR | typeof PURPLE_COLOR;
+export type color =
+  | typeof ORANGE_COLOR
+  | typeof BLUE_COLOR
+  | typeof PURPLE_COLOR;
 export function Circle({ color }: { color: color }) {
   return (
     <svg
