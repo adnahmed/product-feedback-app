@@ -1,12 +1,13 @@
 import commentIcon from "@/public/comment.svg";
-import initital_data from "@/public/data.json";
+import initial_data from "@/public/data.json";
 import Image from "next/image";
 import Link from "next/link";
+import useLocalStorageState from "use-local-storage-state";
 import { tw } from "../lib/tailwindest";
 import { CategorySelector } from "./CategorySelection";
 import { LinkButton } from "./LinkButton";
 
-export type ProductRequest = (typeof initital_data.productRequests)[number];
+export type ProductRequest = (typeof initial_data.productRequests)[number];
 const productRequestContainer = tw.style({
   display: "grid",
   flexGrow: "grow",
@@ -96,10 +97,22 @@ export function ProductRequest({
 }: {
   productRequest: ProductRequest;
 }) {
+  const [data, setData] = useLocalStorageState("data", {
+    defaultValue: initial_data,
+  });
+  const UpvoteFeedback = () => {
+    const post = data.productRequests.find((pr) => pr.id === productRequest.id);
+    if (!post) return;
+    if (!post.upvotes) post.upvotes = 1;
+    else post.upvotes = post.upvotes + 1;
+    setData(data);
+  };
   return (
     <div className={productRequestContainer.class}>
       <div className={upvote.class}>
-        <LinkButton icon={true}>{productRequest.upvotes.toString()}</LinkButton>
+        <LinkButton onClick={UpvoteFeedback} icon={true}>
+          {productRequest.upvotes.toString()}
+        </LinkButton>
       </div>
       <Link
         className={requestLink.class}

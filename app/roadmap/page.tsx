@@ -115,6 +115,16 @@ const HorizontalLinkButton = ({
 
 const statuses = ["planned", "in-progress", "live"];
 function FeatureCard({ feature }: { feature: ProductRequest }) {
+  const [data, setData] = useLocalStorageState("data", {
+    defaultValue: initial_data,
+  });
+  const UpvoteFeedback = () => {
+    const post = data.productRequests.find((pr) => pr.id === feature.id);
+    if (!post) return;
+    if (!post.upvotes) post.upvotes = 1;
+    else post.upvotes = post.upvotes + 1;
+    setData(data);
+  };
   return (
     <div className={card.class(feature.status as Status)}>
       <div className="flex flex-row gap-2 text-gray-dark justify-start items-center">
@@ -138,7 +148,7 @@ function FeatureCard({ feature }: { feature: ProductRequest }) {
       </p>
       <LinkButton>{capitalize(feature.category)}</LinkButton>
       <div className="pt-[16px] flex justify-between items-center">
-        <HorizontalLinkButton>
+        <HorizontalLinkButton onClick={UpvoteFeedback}>
           {feature.upvotes.toString()}
         </HorizontalLinkButton>
         <div className={commentIconContainer.class}>
