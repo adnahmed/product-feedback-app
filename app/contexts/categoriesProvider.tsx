@@ -7,11 +7,10 @@ import {
   SetStateAction,
   useState,
 } from "react";
-import type { Categories } from "../components/CategorySelection";
 
 export const CategoriesContexts = createContext<{
-  categories: Categories;
-  setCategories?: Dispatch<SetStateAction<{ categories: Categories }>>;
+  categories: string[];
+  setCategories?: Dispatch<SetStateAction<{ categories: string[] }>>;
 }>({
   categories: ["All"],
 });

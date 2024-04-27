@@ -4,11 +4,12 @@ import Button from "@/app/components/Button";
 import { Dropdown } from "@/app/components/Dropdown";
 import { TextField } from "@/app/components/TextField";
 import { tw } from "@/app/lib/tailwindest";
-import data from "@/public/data.json";
+import initial_data from "@/public/data.json";
 import PenIcon from "@/public/pen.svg";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { useState } from "react";
+import useLocalStorageState from "use-local-storage-state";
 
 const formPage = tw.style({
   marginX: "mx-[25px]",
@@ -67,6 +68,9 @@ export default function EditFeedback({
 }: {
   params: { "feedback-id": string };
 }) {
+  const [data, setData] = useLocalStorageState("data", {
+    defaultValue: initial_data,
+  });
   const productRequest = data.productRequests.find(
     (pr) => pr.id.toString() === productRequestId,
   );

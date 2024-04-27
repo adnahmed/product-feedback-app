@@ -1,12 +1,12 @@
 import commentIcon from "@/public/comment.svg";
-import data from "@/public/data.json";
+import initital_data from "@/public/data.json";
 import Image from "next/image";
 import Link from "next/link";
 import { tw } from "../lib/tailwindest";
 import { CategorySelector } from "./CategorySelection";
 import { LinkButton } from "./LinkButton";
 
-export type ProductRequest = (typeof data.productRequests)[number];
+export type ProductRequest = (typeof initital_data.productRequests)[number];
 const productRequestContainer = tw.style({
   display: "grid",
   flexGrow: "grow",

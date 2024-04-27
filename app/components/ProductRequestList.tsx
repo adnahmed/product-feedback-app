@@ -1,6 +1,7 @@
 "use client";
-import data from "@/public/data.json";
+import initial_data from "@/public/data.json";
 import { useContext } from "react";
+import useLocalStorageState from "use-local-storage-state";
 import { CategoriesContexts } from "../contexts/categoriesProvider";
 import { SortOrderContexts } from "../contexts/SortProvider";
 import { ProductRequest } from "./ProductRequest";
@@ -14,6 +15,9 @@ import {
 export function ProductRequestList() {
   const sortContext = useContext(SortOrderContexts);
   const { categories: selectedCategories } = useContext(CategoriesContexts);
+  const [data, setData] = useLocalStorageState("data", {
+    defaultValue: initial_data,
+  });
   return (
     <section className="flex flex-col gap-[24px] mx-[24px] table:mx-[41px] desktop:mx-[30px] desktop:col-start-2 desktop:col-end-2">
       {data.productRequests

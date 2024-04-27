@@ -1,5 +1,6 @@
 "use client";
-import data from "@/public/data.json";
+import initial_data from "@/public/data.json";
+import useLocalStorageState from "use-local-storage-state";
 import { FeedbackSidebar } from "./components/FeedbackSidebar";
 import { NoFeedbackPage } from "./components/NoFeedbackPage";
 import { ProductRequestList } from "./components/ProductRequestList";
@@ -27,6 +28,9 @@ const layout = tw.style({
 });
 
 export default function Dashboard() {
+  const [data, setData] = useLocalStorageState("data", {
+    defaultValue: initial_data,
+  });
   return (
     <main>
       <SortOrderProvider>

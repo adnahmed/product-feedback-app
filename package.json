@@ -12,7 +12,8 @@
     "next": "14.2.2",
     "react": "^18",
     "react-dom": "^18",
-    "tailwindest": "^2.3.0"
+    "tailwindest": "^2.3.0",
+    "use-local-storage-state": "^19.2.0"
   },
   "devDependencies": {
     "@types/node": "^20",

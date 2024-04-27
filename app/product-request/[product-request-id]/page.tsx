@@ -3,8 +3,9 @@
 import { Comment, CommentArea } from "@/app/components/Comment & Reply";
 import { ProductRequest } from "@/app/components/ProductRequest";
 import { tw } from "@/app/lib/tailwindest";
-import data from "@/public/data.json";
+import initial_data from "@/public/data.json";
 import { notFound } from "next/navigation";
+import useLocalStorageState from "use-local-storage-state";
 
 const form = tw.style({
   borderRadius: "rounded-lg",
@@ -33,6 +34,9 @@ export default function ProductRequestDetail({
 }: {
   params: { "product-request-id": string };
 }) {
+  const [data, setData] = useLocalStorageState("data", {
+    defaultValue: initial_data,
+  });
   const productRequest = data.productRequests.find(
     (pr) => pr.id.toString() === productRequestId,
   );

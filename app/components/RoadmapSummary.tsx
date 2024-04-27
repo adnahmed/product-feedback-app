@@ -1,5 +1,6 @@
-import data from "@/public/data.json";
+import initial_data from "@/public/data.json";
 import Link from "next/link";
+import useLocalStorageState from "use-local-storage-state";
 import { tw } from "../lib/tailwindest";
 import { BLUE_COLOR, Circle, ORANGE_COLOR, PURPLE_COLOR } from "./Circle";
 const summaryContainer = tw.style({
@@ -48,6 +49,9 @@ const summaryContent = tw.style({
   color: "text-gray-dark",
 });
 export function RoadmapSummary() {
+  const [data, setData] = useLocalStorageState("data", {
+    defaultValue: initial_data,
+  });
   return (
     <div className={summaryContainer.class}>
       <div className={summaryHeader.class}>

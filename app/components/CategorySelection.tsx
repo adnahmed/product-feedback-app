@@ -1,16 +1,12 @@
 "use client";
-import data from "@/public/data.json";
+import initial_data from "@/public/data.json";
 import { useContext } from "react";
+import useLocalStorageState from "use-local-storage-state";
 import { CategoriesContexts } from "../contexts/categoriesProvider";
 import { capitalize } from "../lib/helpers";
 import { tw } from "../lib/tailwindest";
 import { LinkButton } from "./LinkButton";
-export const categories = ["All"].concat([
-  ...new Set(
-    data.productRequests.map((productRequest) => productRequest.category),
-  ),
-]);
-export type Categories = typeof categories;
+
 const categoriesContainer = tw.style({
   display: "flex",
   maxWidth: "max-w-[223px]",
@@ -23,6 +19,16 @@ const categoriesContainer = tw.style({
   justifyItems: "justify-items-start",
 });
 export function CategorySelection() {
+  const [data, setData] = useLocalStorageState("data", {
+    defaultValue: initial_data,
+  });
+  const categories = ["All"]
+    .concat([
+      ...new Set(
+        data.productRequests.map((productRequest) => productRequest.category),
+      ),
+    ])
+    .sort((a, b) => a.localeCompare(b));
   return (
     <div className="h-[178px] bg-white rounded-xl w-[223px] desktop:w-[255px] overflow-y-auto no-scrollbar">
       <div className={categoriesContainer.class}>

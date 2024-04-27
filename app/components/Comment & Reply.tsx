@@ -1,6 +1,6 @@
 "use client";
 
-import data from "@/public/data.json";
+import initial_data from "@/public/data.json";
 import Image from "next/image";
 import { useState } from "react";
 import { tw } from "../lib/tailwindest";
@@ -78,7 +78,7 @@ export function Reply({
           </div>
         </div>
         <button
-          onClick={() => setShowReplyForm(true)}
+          onClick={() => setShowReplyForm(!showReplyForm)}
           className={replyButton.class}
         >
           Reply
@@ -97,7 +97,7 @@ function ReplyForm() {
   return (
     <form className="flex items-start pt-[24px] rounded-lg gap-[16px]">
       <textarea
-        className="max-w-[416px] w-full resize-none rounded-lg max-h-[80px] active:outline-blue focus:outline-blue bg-gray py-[16px] px-[24px]"
+        className="max-w-[416px] tablet:max-w-full w-full resize-none rounded-lg max-h-[80px] active:outline-blue focus:outline-blue bg-gray py-[16px] px-[24px]"
         maxLength={250}
         placeholder="Reply to this comment"
       />
@@ -108,7 +108,9 @@ function ReplyForm() {
   );
 }
 
-type Comments = NonNullable<(typeof data.productRequests)[number]["comments"]>;
+type Comments = NonNullable<
+  (typeof initial_data.productRequests)[number]["comments"]
+>;
 type Comment = Comments[number];
 export function Comment({ comment }: { comment: Comment }) {
   const [showReplyForm, setShowReplyForm] = useState(false);
@@ -133,7 +135,7 @@ export function Comment({ comment }: { comment: Comment }) {
           </div>
         </div>
         <button
-          onClick={() => setShowReplyForm(true)}
+          onClick={() => setShowReplyForm(!showReplyForm)}
           className={replyButton.class}
         >
           Reply
