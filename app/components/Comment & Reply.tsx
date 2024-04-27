@@ -98,6 +98,7 @@ function ReplyForm() {
     <form className="flex items-start pt-[24px] rounded-lg gap-[16px]">
       <textarea
         className="max-w-[416px] w-full resize-none rounded-lg max-h-[80px] active:outline-blue focus:outline-blue bg-gray py-[16px] px-[24px]"
+        maxLength={250}
         placeholder="Reply to this comment"
       />
       <div className="text-[5px]">
