@@ -1,10 +1,18 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { useState } from "react";
 import { tw } from "../lib/tailwindest";
 import { CategorySelection } from "./CategorySelection";
-import { FeedbackAppName } from "./FeedbackAppName";
+import { FeedbackAppNameProps } from "./FeedbackAppName";
 import { RoadmapSummary } from "./RoadmapSummary";
+const FeedbackAppName = dynamic<FeedbackAppNameProps>(
+  () => import("./FeedbackAppName"),
+  {
+    ssr: false,
+  },
+);
+
 const sidebar = tw.toggle({
   truthy: {
     display: "flex",
