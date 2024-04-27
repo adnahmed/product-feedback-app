@@ -4,6 +4,8 @@ import menu from "@/public/menu.svg";
 import Image from "next/image";
 import { Dispatch, SetStateAction } from "react";
 import { tw } from "../lib/tailwindest";
+import { useBreakpoint } from "../lib/useBreakpoint";
+import { useImperativeDisableScroll } from "../lib/useImperativeDisableScroll";
 
 const appName = tw.style({
   display: "flex",
@@ -28,6 +30,7 @@ const appName = tw.style({
 const name = tw.style({
   placeSelf: "place-self-end",
 });
+
 export function FeedbackAppName({
   menuOpen,
   setMenuOpen,
@@ -35,6 +38,11 @@ export function FeedbackAppName({
   menuOpen: boolean;
   setMenuOpen: Dispatch<SetStateAction<boolean>>;
 }) {
+  const tablet = useBreakpoint("tablet");
+  useImperativeDisableScroll({
+    element: document.scrollingElement,
+    disabled: menuOpen && !tablet,
+  });
   return (
     <div
       className={`${appName.class}`}
@@ -60,7 +68,9 @@ export function FeedbackAppName({
           />
         ) : (
           <Image
-            onClick={() => setMenuOpen && setMenuOpen(true)}
+            onClick={() => {
+              setMenuOpen && setMenuOpen(true);
+            }}
             src={menu}
             alt="Menu Icon"
           />

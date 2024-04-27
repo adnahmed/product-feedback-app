@@ -8,11 +8,7 @@ const config: Config = {
   ],
   theme: {
     extend: {
-      screens: {
-        tablet: '768px',
-        mobile: '375px',
-        desktop: '1440px'
-      },
+      screens: require("./tailwind.screens"),
       colors: {
         blue: "#4661e6",
         "blue-light": "#62bcfa",
