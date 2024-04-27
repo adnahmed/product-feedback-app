@@ -43,6 +43,7 @@ const requestLink = tw.style({
   gridRowStart: "row-start-1",
   gridRowEnd: "row-end-1",
   gridColumn: "col-span-2",
+
   "@tablet": {
     gridColumn: "tablet:col-span-1",
     gridColumnStart: "tablet:col-start-2",
@@ -77,6 +78,18 @@ const commentIconContainer = tw.style({
   },
 });
 
+const titleLink = tw.style({
+  color: "text-blue-dark-2",
+  display: "flex",
+  flexDirection: "flex-col",
+  gap: "gap-1",
+  flexShrink: "shrink",
+  alignItems: "items-start",
+  ":hover": {
+    color: "hover:text-blue",
+  },
+});
+
 export function ProductRequest({
   productRequest,
 }: {
@@ -92,8 +105,8 @@ export function ProductRequest({
         key={productRequest.id}
         href={`/product-request/${productRequest.id}`}
       >
-        <div className="flex flex-col shrink items-start gap-1">
-          <h2 className="text-blue-dark-2">{productRequest.title}</h2>
+        <div className={titleLink.class}>
+          <h2>{productRequest.title}</h2>
           <p>{productRequest.description}</p>
         </div>
       </Link>
