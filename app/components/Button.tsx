@@ -16,6 +16,7 @@ const button = tw.toggle({
     paddingX: "px-[16px]",
     paddingY: "py-[12px]",
     fontWeight: "font-bold",
+    height: "h-max",
     borderRadius: "rounded-md",
     transition: "transition ease-in-out",
     gap: "gap-4",

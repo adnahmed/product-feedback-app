@@ -107,7 +107,7 @@ export function ProductRequest({
       >
         <div className={titleLink.class}>
           <h2>{productRequest.title}</h2>
-          <p>{productRequest.description}</p>
+          <p className="text-gray-dark">{productRequest.description}</p>
         </div>
       </Link>
       <div className={category.class}>

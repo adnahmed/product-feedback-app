@@ -6,8 +6,6 @@ import { Dropdown } from "../components/Dropdown";
 import { TextField } from "../components/TextField";
 import { tw } from "../lib/tailwindest";
 
-const actions = tw.style({});
-
 const formPage = tw.style({
   marginX: "mx-[25px]",
   marginTop: "mt-[35px]",

@@ -1,3 +1,4 @@
+"use client";
 import { tw } from "../lib/tailwindest";
 import { UpArrow } from "./UpArrow";
 
