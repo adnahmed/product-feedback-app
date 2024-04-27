@@ -102,7 +102,6 @@ export default function NewFeedback() {
     setData(data);
     toast.dismiss();
     toast.success("Feedback added successfully!");
-    // router.back();
   };
   return (
     <div className={formPage.class}>

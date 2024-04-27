@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Jost } from "next/font/google";
+import { Toaster } from "react-hot-toast";
 import "./globals.css";
 
 const jost = Jost({
@@ -19,7 +20,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${jost.variable} font-sans`}>{children}</body>
+      <body className={`${jost.variable} font-sans`}>
+        <Toaster />
+        {children}
+      </body>
     </html>
   );
 }

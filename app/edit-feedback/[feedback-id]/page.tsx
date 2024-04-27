@@ -7,8 +7,9 @@ import { tw } from "@/app/lib/tailwindest";
 import initial_data from "@/public/data.json";
 import PenIcon from "@/public/pen.svg";
 import Image from "next/image";
-import { notFound } from "next/navigation";
-import { useState } from "react";
+import { notFound, useRouter } from "next/navigation";
+import { useRef, useState } from "react";
+import toast from "react-hot-toast";
 import useLocalStorageState from "use-local-storage-state";
 
 const formPage = tw.style({
@@ -77,8 +78,45 @@ export default function EditFeedback({
   if (!productRequest) {
     notFound();
   }
+  const router = useRouter();
   const [title, setTitle] = useState(productRequest.title);
+  const [titleError, setTitleError] = useState<string | undefined>();
+  const titleRef = useRef(null);
   const [desc, setDesc] = useState(productRequest.description);
+  const [category, setCategory] = useState<string>(productRequest.category);
+  const [status, setStatus] = useState<string>(productRequest.status);
+
+  const DeleteFeedback = () => {
+    data.productRequests = data.productRequests.filter(
+      (pr) => pr.id.toString() !== productRequestId,
+    );
+    toast.success("Feedback deleted successfully!");
+    setData(data);
+    router.back();
+    router.back();
+  };
+
+  const EditFeedback = () => {
+    if (title.length < 5) {
+      setTitleError("Title must be at least 5 characters long");
+      /* @ts-ignore */
+      titleRef.current?.focus();
+      return;
+    }
+    const productRequest = data.productRequests.find(
+      (pr) => pr.id.toString() === productRequestId,
+    );
+    if (!productRequest) {
+      notFound();
+    }
+    productRequest.title = title;
+    productRequest.category = category;
+    productRequest.status = status;
+    productRequest.description = desc;
+    setData(data);
+    toast.dismiss();
+    toast.success("Feedback edited successfully!");
+  };
   return (
     <div className={formPage.class}>
       <div className={back.class}>
@@ -98,7 +136,19 @@ export default function EditFeedback({
           <span className={sectionDesc.class}>
             Add a short, descriptive headline
           </span>
-          <TextField value={title} onChange={(e) => setTitle(e.target.value)} />
+          <TextField
+            value={title}
+            errorMessage={titleError}
+            isError={titleError !== undefined}
+            onChange={(e) => {
+              setTitle(e.target.value);
+              if (e.target.value.length < 5) {
+                setTitleError("Title must be at least 5 characters long");
+              } else {
+                setTitleError(undefined);
+              }
+            }}
+          />
         </div>
         <div className={section.class}>
           <span className={sectionTitle.class}>Category</span>
@@ -107,6 +157,9 @@ export default function EditFeedback({
           </span>
           <div className="relative">
             <Dropdown
+              onChange={(option) => {
+                setCategory(option);
+              }}
               defaultOption={productRequest.category}
               options={["Feature", "UI", "UX", "Enhancement", "Bug"]}
             />
@@ -117,6 +170,9 @@ export default function EditFeedback({
           <span className={sectionDesc.class}>Change feature state</span>
           <div className="relative">
             <Dropdown
+              onChange={(option) => {
+                setStatus(option);
+              }}
               defaultOption={productRequest.status}
               options={["planned", "in-progress", "live"]}
             />
@@ -140,10 +196,14 @@ export default function EditFeedback({
         </div>
         <div className="flex flex-col gap-[16px] tablet:flex-row-reverse tablet:justify-between">
           <div className="flex flex-col gap-[16px] tablet:flex-row-reverse tablet:justify-start">
-            <Button color="purple">Save Changes</Button>
+            <Button onClick={EditFeedback} color="purple">
+              Save Changes
+            </Button>
             <Button color="dark-blue">Cancel</Button>
           </div>
-          <Button color="red">Delete</Button>
+          <Button onClick={DeleteFeedback} color="red">
+            Delete
+          </Button>
         </div>
       </div>
     </div>
