@@ -1,3 +1,4 @@
+"use client";
 import data from "@/public/data.json";
 import { FeedbackSidebar } from "./components/FeedbackSidebar";
 import { NoFeedbackPage } from "./components/NoFeedbackPage";
@@ -6,15 +7,6 @@ import { SuggestionsTitleBar } from "./components/SuggestionsTitleBar";
 import SortOrderProvider from "./contexts/SortProvider";
 import CategoriesProvider from "./contexts/categoriesProvider";
 import { tw } from "./lib/tailwindest";
-
-const menu = tw.style({
-  "@tablet": {
-    display: "tablet:flex",
-    flexDirection: "tablet:flex-col",
-    justifyItems: "tablet:justify-items-center",
-  },
-  "@desktop": {},
-});
 
 const layout = tw.style({
   display: "flex",

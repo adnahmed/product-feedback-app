@@ -3,7 +3,6 @@ import data from "@/public/data.json";
 import { useContext } from "react";
 import { CategoriesContexts } from "../contexts/categoriesProvider";
 import { SortOrderContexts } from "../contexts/SortProvider";
-import { tw } from "../lib/tailwindest";
 import { ProductRequest } from "./ProductRequest";
 import {
   LEAST_COMMENTS,
@@ -11,23 +10,6 @@ import {
   MOST_COMMENTS,
   MOST_UPVOTES,
 } from "./SortBy";
-
-const listContainer = tw.style({
-  display: "flex",
-  flexDirection: "flex-col",
-  gap: "gap-[24px]",
-  marginX: "mx-[24px]",
-  "@tablet": {
-    marginX: "tablet:mx-[41px]",
-  },
-  "@desktop": {
-    marginX: "desktop:mx-[30px]",
-    gridColumnStart: "desktop:col-start-2",
-    gridColumnEnd: "desktop:col-end-2",
-    gridRowStart: "desktop:row-start-2",
-    gridRowEnd: "desktop:row-end-2",
-  },
-});
 
 export function ProductRequestList() {
   const sortContext = useContext(SortOrderContexts);
