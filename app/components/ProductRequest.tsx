@@ -21,7 +21,8 @@ const productRequestContainer = tw.style({
     maxWidth: "mobile:max-w-[689px]",
   },
   "@tablet": {
-    maxWidth: "tablet:max-w-[825px]",
+    maxWidth: "tablet:max-w-full",
+    width: "tablet:w-full",
     gridTemplateColumns: "tablet:grid-cols-[max-content,auto,max-content]",
     gridTemplateRows: "tablet:grid-rows-[1fr, 1fr]",
   },
