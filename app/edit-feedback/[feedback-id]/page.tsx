@@ -1,10 +1,14 @@
-import PlusIcon from "@/public/plus.svg";
+"use client";
+import BackButton from "@/app/components/BackButton";
+import Button from "@/app/components/Button";
+import { Dropdown } from "@/app/components/Dropdown";
+import { TextField } from "@/app/components/TextField";
+import data from "@/app/data.json";
+import { tw } from "@/app/lib/tailwindest";
+import PenIcon from "@/public/pen.svg";
 import Image from "next/image";
-import BackButton from "../components/BackButton";
-import Button from "../components/Button";
-import { Dropdown } from "../components/Dropdown";
-import { TextField } from "../components/TextField";
-import { tw } from "../lib/tailwindest";
+import { notFound } from "next/navigation";
+import { useState } from "react";
 
 const formPage = tw.style({
   marginX: "mx-[25px]",
@@ -58,21 +62,39 @@ const sectionDesc = tw.style({
   color: "text-gray-dark",
 });
 
-export default function NewFeedback() {
+export default function EditFeedback({
+  params: { "feedback-id": productRequestId },
+}: {
+  params: { "feedback-id": string };
+}) {
+  const productRequest = data.productRequests.find(
+    (pr) => pr.id.toString() === productRequestId,
+  );
+  if (!productRequest) {
+    notFound();
+  }
+  const [title, setTitle] = useState(productRequest.title);
+  const [desc, setDesc] = useState(productRequest.description);
   return (
     <div className={formPage.class}>
       <div className={back.class}>
         <BackButton>Go Back</BackButton>
       </div>
       <div className={form.class}>
-        <Image className="absolute -top-5 left-5" src={PlusIcon} alt="+ icon" />
-        <div className={heading.class}>Create New Feedback</div>
+        <Image
+          className="absolute -top-5 left-5"
+          src={PenIcon}
+          alt="pen icon"
+        />
+        <div className={heading.class}>
+          Editing &apos;{productRequest.title}&apos;
+        </div>
         <div className={section.class}>
           <span className={sectionTitle.class}>Feedback Title</span>
           <span className={sectionDesc.class}>
             Add a short, descriptive headline
           </span>
-          <TextField />
+          <TextField value={title} onChange={(e) => setTitle(e.target.value)} />
         </div>
         <div className={section.class}>
           <span className={sectionTitle.class}>Category</span>
@@ -80,7 +102,20 @@ export default function NewFeedback() {
             Choose a category for your feedback
           </span>
           <div className="relative">
-            <Dropdown options={["Feature", "UI", "UX", "Enhancement", "Bug"]} />
+            <Dropdown
+              defaultOption={productRequest.category}
+              options={["Feature", "UI", "UX", "Enhancement", "Bug"]}
+            />
+          </div>
+        </div>
+        <div className={section.class}>
+          <span className={sectionTitle.class}>Update Status</span>
+          <span className={sectionDesc.class}>Change feature state</span>
+          <div className="relative">
+            <Dropdown
+              defaultOption={productRequest.status}
+              options={["planned", "in-progress", "live"]}
+            />
           </div>
         </div>
         <div className={`static ${section.class}`}>
@@ -91,15 +126,20 @@ export default function NewFeedback() {
           </span>
           <textarea
             className="h-[120px] resize-none bg-gray  p-4 rounded-lg active:outline-blue focus:outline-blue"
+            value={desc}
+            onChange={(e) => setDesc(e.target.value)}
             name=""
             id=""
             cols={5}
             rows={10}
           />
         </div>
-        <div className="flex flex-col gap-[16px] tablet:flex-row-reverse tablet:justify-start">
-          <Button color="purple">Add Feedback</Button>
-          <Button color="dark-blue">Cancel</Button>
+        <div className="flex flex-col gap-[16px] tablet:flex-row-reverse tablet:justify-between">
+          <div className="flex flex-col gap-[16px] tablet:flex-row-reverse tablet:justify-start">
+            <Button color="purple">Save Changes</Button>
+            <Button color="dark-blue">Cancel</Button>
+          </div>
+          <Button color="red">Delete</Button>
         </div>
       </div>
     </div>

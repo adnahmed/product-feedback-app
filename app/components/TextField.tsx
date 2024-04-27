@@ -52,13 +52,15 @@ export const TextField = forwardRef<
   HTMLInputElement,
   {
     isError?: boolean;
+    value?: string;
     errorMessage?: string;
     onChange?: ChangeEventHandler<HTMLInputElement>;
   }
->(({ isError = false, errorMessage, onChange }, ref) => {
+>(({ isError = false, errorMessage, onChange, value }, ref) => {
   return (
     <div className={inputContainer.class}>
       <input
+        value={value}
         onChange={onChange}
         className={input.class({
           type: isError ? "error" : "normal",
