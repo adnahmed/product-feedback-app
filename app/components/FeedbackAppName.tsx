@@ -31,13 +31,14 @@ const name = tw.style({
   placeSelf: "place-self-end",
 });
 
-export function FeedbackAppName({
-  menuOpen,
-  setMenuOpen,
-}: {
+export interface FeedbackAppNameProps {
   menuOpen: boolean;
   setMenuOpen: Dispatch<SetStateAction<boolean>>;
-}) {
+}
+export default function FeedbackAppName({
+  menuOpen,
+  setMenuOpen,
+}: FeedbackAppNameProps) {
   const tablet = useBreakpoint("tablet");
   useImperativeDisableScroll({
     element: document.scrollingElement,
