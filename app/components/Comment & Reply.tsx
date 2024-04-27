@@ -235,7 +235,8 @@ export function CommentArea() {
       toast.error("Comment cannot be empty");
       return;
     }
-
+    if (!post) return;
+    if (!post?.comments) post.comments = [];
     post?.comments?.push({
       id:
         post.comments.length === 0
