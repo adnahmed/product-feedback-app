@@ -1,4 +1,4 @@
-# Bicimex - Product Feedback App
+# Bicimex - Product Feedback App (Local Storage with SSR)
 
 ![Design preview for the Product feedback app coding challenge](./preview.jpg)
 
